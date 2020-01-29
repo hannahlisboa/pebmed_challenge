@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, TouchableOpacity, Text, FlatList, StyleSheet} from 'react-native';
+import {View, TouchableOpacity, Text, FlatList} from 'react-native';
 import {Colors} from './colors';
 import styles from './styles';
 
@@ -14,7 +14,12 @@ export default class Accordian extends Component {
     };
   }
 
+  onAction = item => {
+    this.props.action(item);
+  };
+
   render() {
+    const {action} = this.props;
     return (
       <View>
         <TouchableOpacity
@@ -36,20 +41,15 @@ export default class Accordian extends Component {
               style={{padding: 10}}
               data={this.state.data}
               numColumns={2}
-              renderItem={({item, index}) => <Cell item={item} index={index} />}
+              renderItem={({item, index}) => (
+                <Cell item={item} index={index} action={this.onAction} />
+              )}
             />
           </View>
         )}
       </View>
     );
   }
-
-  onClick = index => {
-    const temp = this.state.data.slice();
-    temp[index].value = !temp[index].value;
-    this.setState({data: temp});
-  };
-
   toggleExpand = () => {
     this.setState({expanded: !this.state.expanded});
   };
