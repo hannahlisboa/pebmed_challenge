@@ -1,9 +1,9 @@
 import {createStore, combineReducers, compose, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
-import PalavrasReduce from './reduces/doencas';
+import indicationsReduce from './reduces/indications';
 
 const reducers = combineReducers({
-  palavras: PalavrasReduce,
+  indications: indicationsReduce,
 });
 
 const storeConfig = () =>
