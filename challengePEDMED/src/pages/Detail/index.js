@@ -7,7 +7,7 @@ import styles from './styles';
 export default class Detail extends Component {
   static navigationOptions = ({navigation}) => {
     return {
-      headerTitle: (
+      headerTitle: () => (
         <Text style={[styles.text, {color: 'white'}]}>
           {navigation.getParam('item').name}
         </Text>

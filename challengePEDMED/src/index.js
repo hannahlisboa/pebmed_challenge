@@ -1,14 +1,18 @@
 import React from 'react';
 import {Provider} from 'react-redux';
-import store from './store/storeConfig';
-
 import Routes from '~/routes';
+import CustomLoading from '~/components/CustomLoading';
 
-const storeConfig = store();
+import {PersistGate} from 'redux-persist/lib/integration/react';
+
+// import the two exports from the last code snippet.
+import {persistor, store} from './store/storeConfig';
 
 const App = () => (
-  <Provider store={storeConfig}>
-    <Routes />
+  <Provider store={store}>
+    <PersistGate loading={<CustomLoading />} persistor={persistor}>
+      <Routes />
+    </PersistGate>
   </Provider>
 );
 
